@@ -1,0 +1,19 @@
+{
+  "name": "sheet-connector",
+  "version": "1.0.0",
+  "description": "A Google Sheets integration project with Node.js and Express",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0",
+    "express": "^4.18.2",
+    "googleapis": "^129.0.0",
+    "nodemailer": "^6.9.7"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

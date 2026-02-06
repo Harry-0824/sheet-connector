@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Sheets Email Connector</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="grid-overlay"></div>
+    <div class="app-container">
+      <header>
+        <div class="header-left">
+          <div class="logo">
+            <span class="logo-icon">⚡</span>
+            <span class="logo-text"
+              >G-SHEETS <span class="highlight">CONNECTOR</span></span
+            >
+          </div>
+          <p class="subtitle">自動化郵件回覆系統 // 數據監控中心</p>
+        </div>
+        <div class="header-right">
+          <button id="refreshBtn" class="btn secondary">重新整理</button>
+          <button id="executeBtn" class="btn primary">執行自動回覆</button>
+        </div>
+      </header>
+
+      <div id="status" class="status-msg"></div>
+
+      <section class="stats-container">
+        <div class="stat-card">
+          <h3>總使用者</h3>
+          <div id="totalUsers" class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>待處理</h3>
+          <div id="pendingUsers" class="stat-value warning">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>已回覆</h3>
+          <div id="repliedUsers" class="stat-value success">0</div>
+        </div>
+      </section>
+
+      <section class="charts-container">
+        <div class="chart-card">
+          <h3>回覆狀態分佈</h3>
+          <div class="canvas-wrapper">
+            <canvas id="statusChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>每日新增使用者</h3>
+          <div class="canvas-wrapper">
+            <canvas id="trendChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="table-container">
+        <h3>詳細資料列表</h3>
+        <div class="table-scroll">
+          <table id="dataTable">
+            <thead>
+              <tr id="tableHead"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
