@@ -11,10 +11,23 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Google Sheets API Setup
-const auth = new google.auth.GoogleAuth({
-  keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+// Google Sheets API Setup
+let authOptions = {
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-});
+};
+
+if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+  try {
+    authOptions.credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+  } catch (e) {
+    console.error("Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON, falling back to keyFile:", e.message);
+    authOptions.keyFile = process.env.GOOGLE_APPLICATION_CREDENTIALS || "credentials.json";
+  }
+} else {
+  authOptions.keyFile = process.env.GOOGLE_APPLICATION_CREDENTIALS || "credentials.json";
+}
+
+const auth = new google.auth.GoogleAuth(authOptions);
 
 const sheets = google.sheets({ version: "v4", auth });
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
